@@ -1,8 +1,9 @@
-
+//VARIABLES GLOBALES
 let pinUser = "0000"; // contraseña del cajero
 let movimientos = [];
 let saldoActual = 0;
 
+//Solicita el pin y valida su ingreso
 function solicitarDatos(){
     let pin = prompt("Ingrese el PIN");
     let mensaje = validarDatos(pin);
@@ -14,6 +15,7 @@ function solicitarDatos(){
     Cajero();
     
 }
+//Valida el pin ingresado
 function validarDatos(pin){
     let mensaje = "";
     if(pin !== pinUser){
@@ -25,7 +27,7 @@ function validarDatos(pin){
 
     return mensaje;
 }
-
+//Menu principal del cajero
 function Cajero(){
     let opcion = "";
     while(opcion !== "5"){
@@ -53,7 +55,8 @@ function Cajero(){
     
     }
    
-}
+}   
+    // funcion para mostrar el historial completo de movimientos
     function consultarMovimientos(){
         if(movimientos.length === 0){
             alert("No hay movimientos registrados.")
@@ -66,14 +69,14 @@ function Cajero(){
          alert(historial);
     }
 }
-    
+    //Funcion para consultar el saldo actual
     function consultarSaldo(){
         alert("Saldo actual : "+ saldoActual)
     }
-
+    //Funcion para realizar los depositos
     function depositar(){
     let depositado = parseInt(prompt("Ingrese el Monto a depositar."));
-        if(depositado<=0){
+        if(depositado<=0 || isNaN(depositado)){
             alert("Monto Invalido.");
             return;
         }
@@ -82,17 +85,20 @@ function Cajero(){
         alert("Depósito realizado. Saldo actual: $" + saldoActual);
         
     }
+    //Funcion para realizar un retiro
     function retirarDinero(){
         let retiro = parseInt(prompt("Ingrese el Monto a retirar."));
-        if(retiro>saldoActual || retiro<=0){
+        if(isNaN(retiro) || retiro>saldoActual || retiro<=0){
             alert("Monto Invalido.");
             return;
         }
-        movimientos.push({tipo:"retiro", monto:retiro});
+        movimientos.push({tipo:"retiro", monto:retiro});|
         saldoActual-=retiro;
         alert("Retiro realizado. Saldo actual: $" + saldoActual);
 
     }
+
+// INICIO DEL SIMULADOR
     solicitarDatos();
 
 

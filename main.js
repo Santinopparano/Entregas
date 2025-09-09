@@ -92,7 +92,7 @@ function Cajero(){
             alert("Monto Invalido.");
             return;
         }
-        movimientos.push({tipo:"retiro", monto:retiro});|
+        movimientos.push({tipo:"retiro", monto:retiro});
         saldoActual-=retiro;
         alert("Retiro realizado. Saldo actual: $" + saldoActual);
 
